@@ -508,12 +508,12 @@ def main():
                                               "Digite /help para ver os comandos disponíveis.")))
     
     logger.info("🤖 Bot iniciado! Aguardando comandos...")
-    print("=" * 50)
+    """ print("=" * 50)
     print("🤖 BOT DE COLETA DE ENDEREÇOS INICIADO")
     print(f"📱 Token do Telegram: {'✓' if TELEGRAM_BOT_TOKEN else '✗'}")
     print(f"🔑 Token da API IXC: {'✓' if AUTH_TOKEN else '✗'}")
     print(f"📊 Chat ID para logs: {TELEGRAM_CHAT_ID if TELEGRAM_CHAT_ID else 'Não configurado'}")
-    print("=" * 50)
+    print("=" * 50) """
     
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 

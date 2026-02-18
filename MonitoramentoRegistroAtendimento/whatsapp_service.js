@@ -34,22 +34,22 @@ client.on('qr', qr => {
 client.on('ready', () => {
     isReady = true;
     console.log('✅ WhatsApp está pronto para enviar alertas de falta de registro!');
-    console.log(`📱 Nome: ${client.info.pushname}`);
-    console.log(`🔢 Número: ${client.info.wid.user}`);
+    /* console.log(`📱 Nome: ${client.info.pushname}`);
+    console.log(`🔢 Número: ${client.info.wid.user}`); */
 });
 
 client.on('authenticated', () => {
-    console.log('✅ Autenticado com sucesso! Sessão salva.');
+    /* console.log('✅ Autenticado com sucesso! Sessão salva.'); */
 });
 
 client.on('auth_failure', msg => {
-    console.error('❌ Falha na autenticação:', msg);
+    /* console.error('❌ Falha na autenticação:', msg); */
 });
 
 client.on('disconnected', reason => {
     isReady = false;
-    console.log('❌ WhatsApp foi desconectado:', reason);
-    console.log('🔄 Tentando reconectar em 10 segundos...');
+    /* console.log('❌ WhatsApp foi desconectado:', reason);
+    console.log('🔄 Tentando reconectar em 10 segundos...'); */
     setTimeout(() => {
         client.initialize();
     }, 10000);
@@ -67,7 +67,7 @@ app.post('/send', async (req, res) => {
             return res.status(503).json({ success: false, error: 'WhatsApp não está pronto' });
         }
 
-        console.log(`📤 Enviando alerta para grupo: ${groupId}`);
+        /* console.log(`📤 Enviando alerta para grupo: ${groupId}`); */
         
         // Método direto que funciona
         await client.sendMessage(groupId, message);
@@ -88,7 +88,7 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`🚀 Serviço WhatsApp rodando na porta ${PORT}`);
+    /* console.log(`🚀 Serviço WhatsApp rodando na porta ${PORT}`);
     console.log(`📤 Endpoint: POST http://localhost:${PORT}/send`);
-    console.log(`📊 Health: GET http://localhost:${PORT}/health`);
+    console.log(`📊 Health: GET http://localhost:${PORT}/health`); */
 });

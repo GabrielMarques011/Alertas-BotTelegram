@@ -17,7 +17,7 @@ AUTH_TOKEN = os.getenv("AUTH_TOKEN")
 API_BASE_URL = "https://assinante.nmultifibra.com.br/webservice/v1"
 
 if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID or not AUTH_TOKEN:
-    print("ERRO: Variáveis de ambiente não carregadas corretamente!")
+    """ print("ERRO: Variáveis de ambiente não carregadas corretamente!") """
     exit(1)
 
 # ========== HEADERS DAS REQUISIÇÕES ==========
@@ -364,25 +364,25 @@ class ClienteMonitor:
 
 def main():
     """Função principal"""
-    print("=" * 60)
+    """ print("=" * 60)
     print("SISTEMA DE MONITORAMENTO DE CLIENTES")
     print("=" * 60)
     print(f"Total de clientes: {len(CLIENTES)}")
     print(f"Verificação a cada: 10 minutos")
     print(f"Alertas offline: A cada 12 horas se continuar offline")
     print(f"Alertas online: Imediato quando cliente voltar")
-    print("=" * 60)
+    print("=" * 60) """
     
     if not TELEGRAM_BOT_TOKEN:
-        print("ERRO: Configure o token do bot do Telegram!")
+        """ print("ERRO: Configure o token do bot do Telegram!") """
         return
     
     if not TELEGRAM_CHAT_ID:
-        print("ERRO: Configure o Chat ID do Telegram!")
+        """ print("ERRO: Configure o Chat ID do Telegram!") """
         return
     
     if not AUTH_TOKEN:
-        print("ERRO: Configure o token de autenticação da API!")
+        """ print("ERRO: Configure o token de autenticação da API!") """
         return
     
     monitor = ClienteMonitor()
