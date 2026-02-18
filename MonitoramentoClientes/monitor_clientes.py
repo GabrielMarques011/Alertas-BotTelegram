@@ -365,13 +365,13 @@ class ClienteMonitor:
 def main():
     """Função principal"""
     """ print("=" * 60)
-    print("SISTEMA DE MONITORAMENTO DE CLIENTES")
-    print("=" * 60)
-    print(f"Total de clientes: {len(CLIENTES)}")
-    print(f"Verificação a cada: 10 minutos")
-    print(f"Alertas offline: A cada 12 horas se continuar offline")
-    print(f"Alertas online: Imediato quando cliente voltar")
-    print("=" * 60) """
+    # print("SISTEMA DE MONITORAMENTO DE CLIENTES")
+    # print("=" * 60)
+    # print(f"Total de clientes: {len(CLIENTES)}")
+    # print(f"Verificação a cada: 10 minutos")
+    # print(f"Alertas offline: A cada 12 horas se continuar offline")
+    # print(f"Alertas online: Imediato quando cliente voltar")
+    # print("=" * 60) """
     
     if not TELEGRAM_BOT_TOKEN:
         """ print("ERRO: Configure o token do bot do Telegram!") """

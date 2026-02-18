@@ -267,8 +267,8 @@ def enviar_telegram(mensagem):
         """ print(f"[ERRO] Falha ao enviar mensagem Telegram: {e}") """
 
 def executar_monitoramento(ultima_execucao):
-    print(f"[{datetime.now()}] Iniciando ciclo de monitoramento...")
-    print(f"Última execução: {ultima_execucao}")
+    # print(f"[{datetime.now()}] Iniciando ciclo de monitoramento...")
+    # print(f"Última execução: {ultima_execucao}")
     try:
         hoje = datetime.now()
         data_inicio = hoje.strftime("%Y-%m-01")

@@ -872,7 +872,7 @@ def main():
     
     if missing_vars:
         """ print(f"Variáveis de ambiente faltando: {', '.join(missing_vars)}")
-        print("Configure-as no arquivo .env") """
+        # print("Configure-as no arquivo .env") """
         return
     
     # Remove espaços em branco dos tokens

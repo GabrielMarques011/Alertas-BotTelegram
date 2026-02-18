@@ -65,7 +65,7 @@ def buscar_chamados_abertos():
             response.raise_for_status()
             data = response.json()
         except Exception as e:
-            print(f"Erro ao buscar chamados (página {page}): {e}")
+            # print(f"Erro ao buscar chamados (página {page}): {e}")
             break
 
         if "registros" in data and data["registros"]:
@@ -95,7 +95,8 @@ def obter_id_responsavel_por_ticket(id_ticket):
         if "registros" in data and data["registros"]:
             return data["registros"][0].get("id_responsavel_tecnico")
     except Exception as e:
-        print(f"Erro ao buscar ticket {id_ticket}: {e}")
+        # print(f"Erro ao buscar ticket {id_ticket}: {e}"),
+        pass
     return None
 
 def obter_nome_responsavel(id_responsavel):
@@ -116,7 +117,8 @@ def obter_nome_responsavel(id_responsavel):
         if "registros" in data and data["registros"]:
             return data["registros"][0].get("funcionario", "Desconhecido")
     except Exception as e:
-        print(f"Erro ao buscar funcionário {id_responsavel}: {e}")
+        # print(f"Erro ao buscar funcionário {id_responsavel}: {e}")
+        pass
     return "Não encontrado"
 
 def obter_assunto_por_id(id_assunto):
@@ -135,7 +137,8 @@ def obter_assunto_por_id(id_assunto):
         if "registros" in data and data["registros"]:
             return data["registros"][0].get("assunto", str(id_assunto))
     except Exception as e:
-        print(f"Erro ao buscar assunto {id_assunto}: {e}")
+        # print(f"Erro ao buscar assunto {id_assunto}: {e}")
+        pass
     return str(id_assunto)
 
 def enviar_alerta_telegram(mensagem, max_retries=5):
@@ -150,11 +153,11 @@ def enviar_alerta_telegram(mensagem, max_retries=5):
             response = requests.post(url, json=payload)
             if response.status_code == 429:
                 retry_after = response.json().get('parameters', {}).get('retry_after', 5)
-                print(f"Rate limit: aguardando {retry_after}s...")
+                # print(f"Rate limit: aguardando {retry_after}s...")
                 time.sleep(retry_after)
                 continue
             response.raise_for_status()
-            print("Alerta enviado com sucesso.")
+            # print("Alerta enviado com sucesso.")
             return True
         except requests.exceptions.RequestException as e:
             if hasattr(e, 'response') and e.response and e.response.status_code == 429:
@@ -162,20 +165,20 @@ def enviar_alerta_telegram(mensagem, max_retries=5):
                     retry_after = e.response.json().get('parameters', {}).get('retry_after', 5)
                 except:
                     retry_after = 5
-                print(f"Rate limit: aguardando {retry_after}s...")
+                # print(f"Rate limit: aguardando {retry_after}s...")
                 time.sleep(retry_after)
             else:
-                print(f"Erro ao enviar mensagem Telegram: {e}")
+                # print(f"Erro ao enviar mensagem Telegram: {e}")
                 return False
-    print("Falha ao enviar mensagem após múltiplas tentativas.")
+    # print("Falha ao enviar mensagem após múltiplas tentativas.")
     return False
 
 def main():
-    print(f"Iniciando monitoria - {datetime.now()}")
+    # print(f"Iniciando monitoria - {datetime.now()}")
     estado = carregar_estado()
     agora = datetime.now()
     chamados = buscar_chamados_abertos()
-    print(f"Total de chamados com status A: {len(chamados)}")
+    # print(f"Total de chamados com status A: {len(chamados)}")
 
     ids_abertos = set()
     total_assunto_filtrado = 0
@@ -197,7 +200,7 @@ def main():
         try:
             data_abertura = datetime.strptime(data_abertura_str, "%Y-%m-%d %H:%M:%S")
         except Exception as e:
-            print(f"Erro ao converter data {data_abertura_str} do chamado {id_os}: {e}")
+            # print(f"Erro ao converter data {data_abertura_str} do chamado {id_os}: {e}")
             continue
 
         minutos_abertura = (agora - data_abertura).total_seconds() / 60.0
@@ -215,12 +218,12 @@ def main():
 
         id_ticket = chamado.get("id_ticket")
         if not id_ticket:
-            print(f"Chamado {id_os} sem id_ticket, ignorado.")
+            # print(f"Chamado {id_os} sem id_ticket, ignorado.")
             continue
 
         id_responsavel = obter_id_responsavel_por_ticket(id_ticket)
         if not id_responsavel:
-            print(f"Chamado {id_os}: não foi possível obter responsável.")
+            # print(f"Chamado {id_os}: não foi possível obter responsável.")
             continue
 
         if int(id_responsavel) not in RESPONSAVEIS_ALVO:
@@ -258,17 +261,17 @@ def main():
             del estado[id_os]
     salvar_estado(estado)
 
-    print("\n--- RELATÓRIO DE FILTRAGEM ---")
-    print(f"Chamados com assunto alvo: {total_assunto_filtrado}")
-    print(f"Chamados com >=30 min abertura: {total_tempo_filtrado}")
-    print(f"Chamados já alertados <30 min: {total_ja_alertado}")
-    print(f"Chamados com responsável fora da lista: {total_responsavel_filtrado}")
-    print(f"Alertas enviados agora: {alertas_enviados}")
-    print("Monitoria finalizada.\n")
+    # print("\n--- RELATÓRIO DE FILTRAGEM ---")
+    # print(f"Chamados com assunto alvo: {total_assunto_filtrado}")
+    # print(f"Chamados com >=30 min abertura: {total_tempo_filtrado}")
+    # print(f"Chamados já alertados <30 min: {total_ja_alertado}")
+    # print(f"Chamados com responsável fora da lista: {total_responsavel_filtrado}")
+    # print(f"Alertas enviados agora: {alertas_enviados}")
+    # print("Monitoria finalizada.\n")
 
 if __name__ == "__main__":
     # Loop infinito com agendamento interno
     while True:
         main()
-        print(f"Aguardando {INTERVALO_MINUTOS} minutos até a próxima execução...")
+        # print(f"Aguardando {INTERVALO_MINUTOS} minutos até a próxima execução...")
         time.sleep(INTERVALO_MINUTOS * 60)  # Converte minutos para segundos

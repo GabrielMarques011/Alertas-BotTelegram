@@ -27,13 +27,13 @@ Atendente: João Silva (Teste)
     
     try:
         """ print(f"📤 Enviando para grupo Demandas: {WHATSAPP_GROUP_DEMANDAS}")
-        print(f"📡 Serviço: {WHATSAPP_SERVICE_URL}") """
+        # print(f"📡 Serviço: {WHATSAPP_SERVICE_URL}") """
         
         # Primeiro, verificar saúde do serviço
         """ print("\n🔍 Verificando saúde do serviço...") """
         health_response = requests.get(f"{WHATSAPP_SERVICE_URL}/health", timeout=5)
         """ print(f"✅ Health check: {health_response.status_code}")
-        print(f"📊 Dados: {health_response.json()}") """
+        # print(f"📊 Dados: {health_response.json()}") """
         
         # Agora enviar a mensagem
         """ print("\n📤 Enviando mensagem...") """
@@ -47,7 +47,7 @@ Atendente: João Silva (Teste)
         )
         
         """ print(f"✅ Status: {response.status_code}")
-        print(f"📊 Resposta: {response.json()}") """
+        # print(f"📊 Resposta: {response.json()}") """
         
         if response.status_code == 200 and response.json().get('success'):
             """ print("\n🎉 Teste concluído com SUCESSO! A mensagem foi enviada para o WhatsApp.") """
@@ -56,8 +56,8 @@ Atendente: João Silva (Teste)
         
     except requests.exceptions.ConnectionError:
         """ print("\n❌ Não foi possível conectar ao WhatsApp Service.")
-        print(f"💡 Certifique-se de que o serviço está rodando em: {WHATSAPP_SERVICE_URL}")
-        print("💡 Execute: node whatsapp_service.js") """
+        # print(f"💡 Certifique-se de que o serviço está rodando em: {WHATSAPP_SERVICE_URL}")
+        # print("💡 Execute: node whatsapp_service.js") """
     except Exception as e:
         """ print(f"\n❌ Erro: {e}") """
 
