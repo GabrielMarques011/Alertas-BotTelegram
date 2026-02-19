@@ -161,9 +161,7 @@ pm2 startup && pm2 save
 | `python-telegram-bot` | Biblioteca oficial para interagir com a Telegram Bot API |
 | `requests` | Realiza as requisições HTTP para a API do sistema de suporte |
 | `python-dotenv` | Carrega variáveis de ambiente a partir de um arquivo `.env` |
-| `schedule` *(provável)* | Agendamento de tarefas em Python sem necessidade de cron |
-
-> Verifique os arquivos `requirements.txt` em cada módulo para a lista completa e versões exatas.
+| `schedule` | Agendamento de tarefas em Python sem necessidade de cron |
 
 ---
 
